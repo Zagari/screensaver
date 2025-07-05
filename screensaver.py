@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Protetor de Tela Zagari - Otimizado para Raspberry Pi 2
+Protetor de Tela - Otimizado para Raspberry Pi 2
 Funciona em framebuffer ou X11 com baixo consumo de recursos
 """
 

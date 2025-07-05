@@ -1,10 +1,10 @@
 #!/bin/bash
-# Script de instalação para Zagari Screensaver no Raspberry Pi 2
+# Script de instalação para Screensaver no Raspberry Pi 2
 # Debian/Raspbian
 
 set -e
 
-echo "=== Instalador do Zagari Screensaver ==="
+echo "=== Instalador do Screensaver ==="
 echo "Configurando protetor de tela para Raspberry Pi 2"
 
 # Verificar se está executando como root
@@ -15,8 +15,8 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 # Diretório de instalação
-INSTALL_DIR="$HOME/zagari-screensaver"
-SERVICE_NAME="zagari-screensaver"
+INSTALL_DIR="$HOME/screensaver"
+SERVICE_NAME="screensaver"
 
 # Função para instalar dependências
 install_dependencies() {
@@ -58,7 +58,7 @@ create_config() {
     echo "Criando arquivo de configuração..."
     
     cat > "$INSTALL_DIR/config.py" << 'EOF'
-# Configuração do Zagari Screensaver
+# Configuração do Screensaver
 
 # Configurações de display
 SCREEN_WIDTH = 800
@@ -79,7 +79,7 @@ ENABLE_KEYBOARD_DETECTION = True
 
 # Configurações de log
 LOG_LEVEL = "INFO"
-LOG_FILE = "/home/pi/zagari-screensaver/logs/screensaver.log"
+LOG_FILE = "/home/pi/screensaver/logs/screensaver.log"
 
 # Configurações avançadas
 USE_FRAMEBUFFER = True  # Usar framebuffer direto quando possível
@@ -95,7 +95,7 @@ create_startup_script() {
     
     cat > "$INSTALL_DIR/start_screensaver.sh" << EOF
 #!/bin/bash
-# Script de inicialização do Zagari Screensaver
+# Script de inicialização do Screensaver
 
 # Configurar variáveis de ambiente
 export DISPLAY=:0
@@ -110,7 +110,7 @@ sleep 5
 cd "$INSTALL_DIR"
 
 # Executar screensaver
-python3 zagari_screensaver.py 2>&1 | tee -a logs/screensaver.log
+python3 screensaver.py 2>&1 | tee -a logs/screensaver.log
 
 EOF
 
@@ -124,7 +124,7 @@ create_systemd_service() {
     
     cat > "/tmp/$SERVICE_NAME.service" << EOF
 [Unit]
-Description=Zagari Screensaver
+Description=Screensaver
 After=graphical-session.target
 Wants=graphical-session.target
 
@@ -197,7 +197,7 @@ test_installation() {
     }
     
     # Verificar se o script principal existe
-    if [[ -f "$INSTALL_DIR/zagari_screensaver.py" ]]; then
+    if [[ -f "$INSTALL_DIR/screensaver.py" ]]; then
         echo "Script principal encontrado!"
     else
         echo "Erro: Script principal não encontrado"
@@ -231,10 +231,10 @@ main() {
     optimize_system
     
     # Copiar script principal para diretório de instalação
-    if [[ -f "zagari_screensaver.py" ]]; then
-        cp zagari_screensaver.py "$INSTALL_DIR/"
+    if [[ -f "screensaver.py" ]]; then
+        cp screensaver.py "$INSTALL_DIR/"
     else
-        echo "Erro: zagari_screensaver.py não encontrado no diretório atual"
+        echo "Erro: screensaver.py não encontrado no diretório atual"
         echo "Certifique-se de que o arquivo está no mesmo diretório do instalador"
         exit 1
     fi

@@ -1,12 +1,12 @@
 #!/bin/bash
-# Script de controle do Zagari Screensaver
+# Script de controle do Screensaver
 # Facilita o gerenciamento do screensaver
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-INSTALL_DIR="$HOME/zagari-screensaver"
-SERVICE_NAME="zagari-screensaver"
+INSTALL_DIR="$HOME/screensaver"
+SERVICE_NAME="screensaver"
 CONFIG_FILE="$INSTALL_DIR/config.py"
 LOG_FILE="$INSTALL_DIR/logs/screensaver.log"
 
