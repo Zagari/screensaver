@@ -1,6 +1,6 @@
 # Zagari Screensaver - Raspberry Pi 2
 
-Um protetor de tela personalizado otimizado para Raspberry Pi 2 com Debian/Raspbian, apresentando efeitos visuais animados com o texto "ZAGARI".
+Um protetor de tela personalizado otimizado para Raspberry Pi 2 com Debian/Raspbian, apresentando efeitos visuais animados com o texto qualquer como "ZAGARI".
 
 ## 🎯 Características
 
@@ -31,8 +31,8 @@ Um protetor de tela personalizado otimizado para Raspberry Pi 2 com Debian/Raspb
 
 ```bash
 # 1. Baixar os arquivos
-git clone https://github.com/seu-usuario/zagari-screensaver.git
-cd zagari-screensaver
+git clone https://github.com/seu-usuario/screensaver.git
+cd screensaver
 
 # 2. Tornar executável e instalar
 chmod +x install.sh
@@ -89,14 +89,14 @@ sudo systemctl disable avahi-daemon.service
 
 ```bash
 # Criar diretório
-mkdir -p ~/zagari-screensaver
-cd ~/zagari-screensaver
+mkdir -p ~/screensaver
+cd ~/screensaver
 
-# Copiar arquivos (zagari_screensaver.py e config.py)
+# Copiar arquivos (screensaver.py e config.py)
 # ... copiar os arquivos ...
 
 # Tornar executável
-chmod +x zagari_screensaver.py
+chmod +x screensaver.py
 ```
 
 ## 🎮 Uso
@@ -104,8 +104,8 @@ chmod +x zagari_screensaver.py
 ### Execução Manual
 
 ```bash
-cd ~/zagari-screensaver
-python3 zagari_screensaver.py
+cd ~/screensaver
+python3 screensaver.py
 ```
 
 ### Controles
@@ -118,14 +118,14 @@ python3 zagari_screensaver.py
 
 ```bash
 # Ativar serviço systemd
-sudo systemctl enable zagari-screensaver
-sudo systemctl start zagari-screensaver
+sudo systemctl enable screensaver
+sudo systemctl start screensaver
 
 # Verificar status
-sudo systemctl status zagari-screensaver
+sudo systemctl status screensaver
 
 # Ver logs
-journalctl -u zagari-screensaver -f
+journalctl -u screensaver -f
 ```
 
 ## ⚙️ Configuração
@@ -199,8 +199,8 @@ free -h
 ### Estrutura do Projeto
 
 ```
-zagari-screensaver/
-├── zagari_screensaver.py  # Script principal
+screensaver/
+├── screensaver.py  # Script principal
 ├── config.py             # Configurações
 ├── install.sh            # Instalador
 ├── start_screensaver.sh  # Script de inicialização
@@ -211,7 +211,7 @@ zagari-screensaver/
 
 ### Adicionando Novos Efeitos
 
-Para criar um novo efeito, adicione no arquivo `zagari_screensaver.py`:
+Para criar um novo efeito, adicione no arquivo `screensaver.py`:
 
 ```python
 # 1. Adicionar novo tipo de efeito
@@ -327,7 +327,7 @@ while true; do
     vcgencmd get_mem arm
     vcgencmd get_mem gpu
     echo "Screensaver Process:"
-    ps aux | grep zagari_screensaver | grep -v grep
+    ps aux | grep screensaver | grep -v grep
     echo "------------------------"
     sleep 30
 done
@@ -340,13 +340,13 @@ done
 # backup_config.sh
 # Backup das configurações
 
-BACKUP_DIR="/home/pi/zagari-backup-$(date +%Y%m%d)"
+BACKUP_DIR="/home/pi/screensaver-backup-$(date +%Y%m%d)"
 mkdir -p "$BACKUP_DIR"
 
 # Backup dos arquivos
-cp ~/zagari-screensaver/*.py "$BACKUP_DIR/"
-cp ~/zagari-screensaver/config.py "$BACKUP_DIR/"
-cp /etc/systemd/system/zagari-screensaver.service "$BACKUP_DIR/"
+cp ~/screensaver/*.py "$BACKUP_DIR/"
+cp ~/screensaver/config.py "$BACKUP_DIR/"
+cp /etc/systemd/system/screensaver.service "$BACKUP_DIR/"
 
 # Backup das configurações do sistema
 cp /boot/config.txt "$BACKUP_DIR/"
@@ -361,18 +361,18 @@ echo "Backup salvo em: $BACKUP_DIR"
 
 ```bash
 # Logs do sistema
-journalctl -u zagari-screensaver -f
+journalctl -u screensaver -f
 
 # Logs do arquivo
-tail -f ~/zagari-screensaver/logs/screensaver.log
+tail -f ~/screensaver/logs/screensaver.log
 
 # Logs de erro
-journalctl -u zagari-screensaver --priority=err
+journalctl -u screensaver --priority=err
 ```
 
 ### Debug Mode
 
-Adicione no início do `zagari_screensaver.py`:
+Adicione no início do `screensaver.py`:
 
 ```python
 import logging
@@ -435,9 +435,9 @@ class Particle:
 ssh pi@192.168.1.100
 
 # Controlar screensaver
-sudo systemctl start zagari-screensaver
-sudo systemctl stop zagari-screensaver
-sudo systemctl restart zagari-screensaver
+sudo systemctl start screensaver
+sudo systemctl stop screensaver
+sudo systemctl restart screensaver
 ```
 
 ### Via API Web (opcional)
@@ -463,11 +463,11 @@ def control_screensaver(action):
 
 ```bash
 # Criar usuário específico
-sudo useradd -r -s /bin/false zagari-user
-sudo usermod -a -G video zagari-user
+sudo useradd -r -s /bin/false screen-user
+sudo usermod -a -G video screen-user
 
 # Configurar permissões
-sudo chown -R zagari-user:zagari-user /home/pi/zagari-screensaver
+sudo chown -R screen-user:screen-user /home/pi/screensaver
 ```
 
 ### Limitações de Recursos
@@ -484,7 +484,7 @@ CPUQuota=50%
 ### Reportar Bugs
 
 1. Verifique se o problema persiste após reiniciar
-2. Colete logs: `journalctl -u zagari-screensaver --since "1 hour ago"`
+2. Colete logs: `journalctl -u screensaver --since "1 hour ago"`
 3. Inclua informações do sistema: `uname -a`, `free -h`, `vcgencmd measure_temp`
 
 ### Contribuir
