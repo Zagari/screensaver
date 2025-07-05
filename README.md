@@ -31,12 +31,12 @@ Um protetor de tela personalizado otimizado para Raspberry Pi 2 com Debian/Raspb
 
 ```bash
 # 1. Baixar os arquivos
-git clone https://github.com/seu-usuario/screensaver.git
+git clone https://github.com/zagari/screensaver.git
 cd screensaver
 
 # 2. Tornar executável e instalar
-chmod +x install.sh
-./install.sh
+chmod +x installer.sh
+./installer.sh
 
 # 3. Reiniciar o sistema
 sudo reboot
