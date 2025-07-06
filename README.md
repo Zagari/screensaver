@@ -134,8 +134,8 @@ Edite o arquivo `config.py` para personalizar:
 
 ```python
 # Configurações de display
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 720
+SCREEN_HEIGHT = 576
 FPS = 20  # Reduzido para economizar CPU
 
 # Configurações de efeitos

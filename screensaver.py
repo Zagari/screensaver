@@ -15,8 +15,8 @@ from dataclasses import dataclass
 from typing import Tuple, List
 
 # Configurações otimizadas para RPi 2
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 720  # Resolução HD
+SCREEN_HEIGHT = 576  # Resolução HD
 FPS = 20  # Baixo FPS para economizar CPU
 COLORS = {
     'BLACK': (0, 0, 0),

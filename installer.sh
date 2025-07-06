@@ -61,8 +61,8 @@ create_config() {
 # Configuração do Screensaver
 
 # Configurações de display
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 720
+SCREEN_HEIGHT = 576
 FPS = 20  # Reduzido para economizar CPU no RPi 2
 
 # Configurações de efeitos
